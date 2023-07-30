@@ -15,7 +15,6 @@ word_responses = {
     "mnapatikana wapi": "Tunapatikana Dar Es Salaam jengo la Sky City floor ya 12.",
     "naweza pata maswasiliano yenu": "Unaweza ukapiga namba ya ofisi ambayo ni 0687887685. \n email: smartshambainfo.com \n ",
 
-    # Ongeza prompt na majibu zaidi kama unavyohitaji
 }
 
 
@@ -39,7 +38,7 @@ def get_response(message):
             return response
 
 
-SANDBOX_API_KEY = "2bf2d9866acff9f964c533c36c7f1fd4ead9c72c9bd1a4e67b11eda1e8b120b1"
+SANDBOX_API_KEY = "API KEY"
 
 
 def response_to_sms(recipient_phone_number, message):
