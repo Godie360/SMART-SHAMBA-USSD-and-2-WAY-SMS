@@ -6,6 +6,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def smart_shamba():
+    
     return 'Lima Kijanja'
 
 
@@ -20,6 +21,8 @@ word_responses = {
 
 @app.route('/sms_callback', methods=['POST'])
 def sms_callback():
+    """This function is called when the user clicks on the sms callback button
+    The function  is responsible for sending the message to the server and processing  the """
     print(request.method)
     print(request.form)
     user_message = request.form["text"]
@@ -32,7 +35,9 @@ def sms_callback():
 
 
 def get_response(message):
-    # Check if the user's message matches any of the word responses in the dictionary
+    """ Get a response message for a given message
+     Check if the user's message matches any of the word responses in the dictionary"""
+    
     for word, response in word_responses.items():
         if word in message.lower():
             return response
