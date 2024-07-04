@@ -6,7 +6,7 @@ import requests
 
 app = Flask(__name__)
 username = "sandbox"
-api_key = "API_KEY"
+api_key = "f9adeb64e252e6ab6ad32cfb36d68e924d6174baada05e58e37ce79aa7ac68d5"
 africastalking.initialize(username, api_key)
 sms = africastalking.SMS
 
@@ -33,7 +33,7 @@ def ussd_callback():
         response += "1. Habari kuhusu Bei ya Mazao\n"
         response += "2. Ushauri wa Kilimo\n"
         response += "3. Habari kuhusu Hali ya hewa\n"
-        response += "4. Mnunuzi\n"
+        response += "4. Habari kuhusu shamba lako\n"
         response += "5. Msaada wa Kiufundi\n"
 
     elif text == "1":
@@ -305,19 +305,22 @@ def ussd_callback():
     elif text == '4':
         # Mkulima Mnunuzi
         response = "CON Chagua chaguo:\n"
-        response += "1. Tafuta Mazao\n"
-        response += "2. Nunua Mazao"
+        response += "1. Kujua kiwango cha virutubisho kwenye sahmba lako\n"
+        response += "2. Kujua kiwango cha unyevu kwenye shamba lako\n"
+
     elif text == '4*1':
         # Tafuta Mazao
-        response = "CON Ingiza jina la mkoa:\n"
+        response = "CON Ingiza code namba yako:\n"
     elif text.startswith('4*1*'):
         # Tafuta Mazao kulingana na mkoa
         region = text.split('*')[2]
         crops = get_crops_by_region(region)
         if crops:
-            response = f"END Mazao yaliyopo katika mkoa wa {region} ni:\n"
-        for crop in crops:
-            response += f"- {crop}\n"
+            response = (f"END Kiwango cha virutubisho kwenye shamba lako ni kama hifatavyo"
+                        f" Nitogen,,, \n")
+            # response = f"END Mazao yaliyopo katika mkoa wa {region} ni:\n"
+        # for crop in crops:
+        #     response += f"- {crop}\n"
 
         try:
             # sending msg
